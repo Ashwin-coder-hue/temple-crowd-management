@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Requirement Form</title>
+    <link rel="IMG-20241212-WA0018.jpg" type="image/jpg" href="">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        
+
+        #page1, #page2, #page3 {
+            background-color:rgba(228, 228, 170, 0.652);
+            margin: 0;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .form-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], input[type="url"],
+            select {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #5cb85c;
+            display: inline-block;
+            position: relative;
+            margin: auto;
+        }
+
+        .checkmark.draw:after {
+            content: '\2713'; /* Check mark symbol */
+            font-size: 48px;
+            line-height: 80px;
+            color: #3e4988;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .required:after { content: " *"; color: red; }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    
+    
+        
+           
+<div class="container" id="page1">
+    <center>
+        <img src="IMG-20241212-WA0018.jpg" height="50" width="60" align="center" alt="Logo">
+        <font color="black" size="2" face="century"><b><h2>Ticket form</h2></b></font>
+    </center>
+    <center><h3>Enter The Details Form</h3></center>
+    <hr>
+    <form action="https://formspree.io/f/myzyqjlb" method="POST" id="myForm">
+<label for="name" class="required"> Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name.." required>
+
+<label for="number" class="required">no.of.visiters </label>
+        <input type="number" id="Register Fees" name="Register Fees" placeholder="Enter the  No.of. Visiters" required>
+
+<label for="phone"class="required">Incharge Phone Number</label>
+        <input type="number" id="phone" name="phone" placeholder="Your phone number.."pattern="[0-9]{10}" required>
+<label for="email"class="required">Incharge Email ID</label>
+        <input type="email" id="email" name="email" placeholder="Your email.." required>
+<label for="number"class="required">OTP</label>
+        <input type="number" id="number" name="number" placeholder="Enter The OTP" required>
+        
+        <script>
+        const data = {andhrapradesh:["Visakhapatnam","Vijayawada","Guntur","Nellore","Kurnool","Kakinada","Rajamahendravaram",
+        "Kadapa","Mangalagiri-Tadepalli","Tirupati","Anantapuram","Vizianagaram","Ongole","Prakasam","Eluru","Proddatur","Nandyal","Adoni"
+        ,"Madanapalle","Machilipatnam","Tenali","Chittoor","Hindupur","Srikakulam","Bhimavaram","Tadepalligudem","Guntakal","Dharmavaram","Gudivada","Narasaraopet","Kadiri","Tadipatri","Chilakaluripet"],
+        karnataka: ["Bangalore (Bengaluru)","Mysore (Mysuru)","Mangalore(Mangaluru)","Hubli-DharwadBelgaum (Belagavi)","Gulbarga (Kalaburagi)","Davangere","Bellary(Ballari)","Bijapur (Vijayapura)","Shimoga (Shivamogga)","Tumkur(Tumakuru)","Raichur","Hospet","Bidar","Hassan","Gadag-Betageri","Robertson Pet (now calledas KGF)"],
+        kerala: ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kannur", "Kollam",
+        "Alappuzha", "Palakkad", "Kottayam", "Pathanamthitta", "Malappuram", "Wayanad",
+        "Kasaragod"],
+        tamilnadu: ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli",
+        "Tiruppur", "Erode", "Vellore", "Thoothukudi", "Dindigul", "Thanjavur", "Ranipet", "Sivakasi",
+        "Karur", "Pollachi", "Rajapalayam", "Nagercoil", "Hosur", "Avadi", "Tiruvannamalai",
+        "Kancheepuram", "Pudukkottai", "Cuddalore", "Kanyakumari", "Neyveli", "Ooty", "Pallavaram",
+        "Tambaram", "Valparai", "Tirupathur"],
+        };
+        function updateCities() {
+        const stateSelect = document.getElementById("state");
+        const citySelect = document.getElementById("city");
+        const selectedState = stateSelect.value;
+        citySelect.innerHTML = '<option value="">Select City</option>';
+        if (selectedState) {
+        const cities = data[selectedState];
+        cities.forEach(city => {
+        const option = document.createElement("option");
+        option.value = city;
+        option.text = city;
+        citySelect.appendChild(option);
+        });
+        }
+    }
+    </script>
+<center>
+    <button type="button" class="form-button" onclick="goBack()">BACK</button>
+    <button type="submit" class="form-button">SUBMIT</button></center>
+</form>
+
+
+<div id="savedDetails"></div>
+</div>  
+<br><br>  
+
+<script>
+    
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Slots Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .slot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: #fafafa;
+        }
+
+        .slot:hover {
+            background: #f0f0f0;
+        }
+
+        .slot span {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .book-btn {
+            padding: 10px 15px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .book-btn:hover {
+            background: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your Tictek</h1>
+        <div id="slots">
+            <!-- Slots will be dynamically added here -->
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Sample slots data
+        const slots = [
+            { id: 1, time: "free Tictek", location: "1000 per slot" },
+            { id: 2, time: "20RS Tictek", location: "800 per slot" },
+            { id: 3, time: "50 RS Tictek", location: "600 per slot" },
+            { id: 4, time: "100 rs Tictek", location: "500 per slot" },
+            { id: 5, time: "200 RS Tictek ", location: "250 per slot" },
+        ];
+
+        const slotsContainer = document.getElementById('slots');
+        const messageContainer = document.getElementById('message');
+
+        // Function to display slots
+        function displaySlots() {
+            slots.forEach(slot => {
+                const slotDiv = document.createElement('div');
+                slotDiv.className = 'slot';
+                slotDiv.innerHTML = `
+                    <span>${slot.time} - ${slot.location}</span>
+                    <a href="slot.html"><button class="book-btn" onclick="bookSlot(${slot.id})">Book</button></a>
+                `;
+                slotsContainer.appendChild(slotDiv);
+            });
+        }
+
+        // Function to book a slot
+        function bookSlot(slotId) {
+            const slot = slots.find(s => s.id === slotId);
+            if (slot) {
+                messageContainer.textContent = `You have successfully booked the slot: ${slot.time} at ${slot.location}`;
+                // Optionally, remove the booked slot
+                slotsContainer.innerHTML = '';
+                displaySlots();
+            }
+        }
+
+        // Initialize slots display
+        displaySlots();
+    </script>
+</body>
+</html>

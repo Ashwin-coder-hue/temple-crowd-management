@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Selection Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            background: #28a745;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background: #218838;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select a Date</h1>
+        
+            <label for="date">Choose a date:</label>
+            <input type="date" id="date" name="date" required>
+           <a href="pide.html"> <button type="submit" class="submit-btn" onclick="submit()" >Submit</button></a>
+
+        </form>
+       <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        const dateForm = document.getElementById('dateForm');
+        const messageDiv = document.getElementById('message');
+
+ dateForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const dateInput = document.getElementById('date').value;
+
+            if (dateInput) {
+                const selectedDate = new Date(dateInput);
+                const formattedDate = selectedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                messageDiv.textContent = `You selected: ${formattedDate}`;
+            } else {
+                messageDiv.textContent = 'Please select a valid date.';
+            }
+        });
+    </script>
+</body>
+</html>
+<form id="dateForm"></form>

